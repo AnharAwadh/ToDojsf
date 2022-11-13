@@ -31,6 +31,7 @@ public class ToDoController {
 
     public void changeStatue(Note note) {
         note.setIsDone(!note.getIsDone());
+        toDoService.udate(note);
     }
     public List<Note> getAllNote(){
         return toDoService.getAllNote();

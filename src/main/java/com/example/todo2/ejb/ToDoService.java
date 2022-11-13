@@ -1,27 +1,37 @@
 package com.example.todo2.ejb;
 
 import com.example.todo2.data.Note;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.ejb.Stateless;
-import java.util.ArrayList;
+import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+import javax.transaction.Transactional;
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class ToDoService {
 
-private ArrayList<Note> list =new ArrayList<>();
+    @PersistenceContext(type= PersistenceContextType.EXTENDED,unitName = "mysql")
+    EntityManager em;
 
-public void addNote(String note){
+    @Transactional
+    public void addNote(String note){
     Note newNote = new Note();
     newNote.setContent(note);
     newNote.setIsDone(false);
-    list.add(newNote);
+    em.persist(newNote);
+    em.flush();
 }
-public List<Note> getAllNote(){
-    return list;
+public List getAllNote(){
+    return em.createQuery("Select t from " + Note.class.getSimpleName() + " t").getResultList();
+
 }
 
+    @Transactional
+    public void udate(Note note) {
+        em.merge(note);
+        em.flush();
+    }
 }
