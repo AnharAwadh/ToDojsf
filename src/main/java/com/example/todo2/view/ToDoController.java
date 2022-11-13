@@ -1,6 +1,7 @@
 package com.example.todo2.view;
 
 
+import com.example.todo2.data.Note;
 import com.example.todo2.ejb.ToDoService;
 import lombok.*;
 
@@ -22,16 +23,18 @@ public class ToDoController {
 
     private String todoInput;
 
-
-
     public void  addNote(String s){
 
       toDoService.addNote(s);
 
     }
 
-    public List<String> getAllNote(){
+    public void changeStatue(Note note) {
+        note.setIsDone(!note.getIsDone());
+    }
+    public List<Note> getAllNote(){
         return toDoService.getAllNote();
     }
+
 
 }
