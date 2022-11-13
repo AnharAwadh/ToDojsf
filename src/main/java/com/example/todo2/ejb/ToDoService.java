@@ -17,7 +17,7 @@ public void addNote(String note){
 
     list.add(note);
 }
-public List getAllNote(){
+public List<String> getAllNote(){
     return list;
 }
 

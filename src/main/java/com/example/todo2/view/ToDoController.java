@@ -20,6 +20,8 @@ public class ToDoController {
     @Inject
     private ToDoService toDoService;
 
+    private String todoInput;
+
 
 
     public void  addNote(String s){
@@ -28,7 +30,7 @@ public class ToDoController {
 
     }
 
-    public List getAllNote(){
+    public List<String> getAllNote(){
         return toDoService.getAllNote();
     }
 

@@ -6,8 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:form>
-    <h:inputText  />
-    <h:commandButton value="AddNote" action="#{todocontroller.addNote(s)}"/>
+    <h:inputText value = "#{todocontroller.todoInput}" />
+    <h:commandButton value="AddNote" action="#{todocontroller.addNote(todocontroller.todoInput)}"/>
 </h:form>
 <h:form>
     <h:commandButton value="show the all notes" action="note" />
